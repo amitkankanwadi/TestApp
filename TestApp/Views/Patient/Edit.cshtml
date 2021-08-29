@@ -1,0 +1,204 @@
+﻿@model TestApp.Models.PatientModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var cityList = new List<string> { "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune" };
+}
+
+@{
+    var hospitalList = new List<string>
+{
+        "Asian Heart Institute, Bandra-Kurla Complex",
+        "Bhabha Hospital, Bandra",
+        "Bhaktivedanta Hospital, Mira Road",
+        "Bombay Hospital, Marine Lines",
+        "Breach Candy Hospital, Mahalaxmi",
+        "D Y Patil Hospital, Nerul",
+        "Cloudnine Hospitals, Link Road, Malad West",
+        "Cooper Hospital, Vile Parle",
+        "Gokuldas Tejpal Hospital, Fort",
+        "Grant Medical College and Sir Jamshedjee Jeejebhoy Group of Hospitals, Sandhurst Road",
+        "Hinduja Healthcare Surgical, Khar, Mumbai",
+        "Hinduja Hospital, Mahim, Mumbai",
+        "Holy Family Hospital, Bandra",
+        "Hurkisondas Hospital, Girgaon",
+        "Jaslok Hospital, Pedar Road",
+        "Lilavati Hospital, Bandra",
+        "Lokmanya Tilak Hospital, Sion",
+        "Nanavati Hospital, Vile Parle",
+        "Prince Aly Khan Hospital, Byculla",
+        "Rajawadi Hospital, Ghatkopar",
+        "Saifee Hospital, Charni Road",
+        "KEM Hospital, Parel",
+        "Shushrusha Citizens Co-operative Hospital, Shivaji Park, Mumbai",
+        "Sunrise Hospital, Bhandup",
+        "Tata Memorial Hospital, Parel",
+        "Mahatma Gandhi Memorial Hospital, Parel",
+        "Aditya Birla Memorial Hospital",
+        "Cloudnine Hospitals, Bhamburda, Shivaji Nagar and Kalyaninagar",
+        "Deenanath Mangeshkar Hospital",
+        "Hardikar Hospital",
+        "Jehangir Hospital",
+        "Joshi Hospital",
+        "Ruby Hall Clinic",
+        "Sassoon Hospital",
+        "Apollo Hospitals",
+        "Bangalore Medical College",
+        "Bowring & Lady Curzon Hospitals.",
+        "Bangalore Medical College",
+        "Columbia Asia, Hebbal",
+        "Columbia Asia, Yeshwanthpur",
+        "Cloudnine Hospitals, Jayanagar.",
+        "Dr. Mohan’s Diabetes Specialities Centre",
+        "Indira Gandhi Institute of Child Health, Bangalore.",
+        "Minto Eye Hospital, Bangalore Medical College.",
+        "Kidwai Memorial Institute of Oncology",
+        "Narayana Hrudayalaya, Hosur Road",
+        "National Institute of Mental Health and Neurosciences (Nimhans), Bangalore",
+        "Nethradhama Superspeciality Eye Hospital, Jayanagar",
+        "Rajarajeswari Medical College and Hospital",
+        "SDS Tuberculosis and Rajiv Gandhi Institute of Chest diseases",
+        "Sri Jayadeva Institute of Cardiology, Jayanagar",
+        "St. Johns Medical College",
+        "Vanivilas Women and Children Hospital, Bangalore Medical College",
+        "Victoria Hospital, Bangalore Medical College",
+        "Vydehi Institute of Medical Sciences and Research Centre Whitefield, Bangalore",
+        "Basaveshwara Teaching and General Hospital, Gulbarga",
+        "All India Institute of Medical Sciences, Ansari Nagar",
+        "Cloudnine Hospitals, Gurgaon",
+        "Columbia Asia, Gurgaon",
+        "Dharamshila Cancer Hospital and Research Centre, Dharamshila Marg, Vasundhara Enclave",
+        "Dr. Mohan’s Diabetes Specialities Centre",
+        "Eden Hospital, East of Kailash, New Delhi",
+        "Fortis Hospital, Gurgaon",
+        "Guru Teg Bahadur Hospital, Dilshad Garden",
+        "Holy Family Hospital, Jamia Nagar, Friends Colony",
+        "Indraprastha Apollo Hospital, Sarita Vihar",
+        "Lady Hardinge Medical College, Shaheed Bhagat Singh Marg",
+        "Lok Nayak Hospital, Delhi",
+        "Maharaja Agrasen Hospital, West Punjabi Bagh",
+        "Maulana Azad Medical College, Bahadur Shah Zafar Marg",
+        "Max Healthcare, Max Medcentre, Panchsheel Park",
+        "Medanta The Medicity, Gurgaon",
+        "National Heart Institute (Delhi), Community Centre, East of Kailash",
+        "Rajiv Gandhi Cancer Institute and Research Centre, Rohini and Niti bagh",
+        "Ram Manohar Lohia Hospital, Baba Kharag Singh Marg",
+        "Safdarjang Hospital",
+        "Sanjeevan Hospitals, Daryaganj, Paharganj",
+        "Sir Ganga Ram Hospital, Rajendar Nagar",
+        "St. Stephens Hospital, Delhi, Tis Hazari",
+        "Sunrise Hospital, Kalindi colony",
+        "Vidyasagar Institute of Mental Health and Neuro Sciences",
+        "Akruti Institute of Plastic and cosmetic surgery, Kukatpally",
+        "Dr. Mohan’s Diabetes Specialities Centre, Domalguda & Jubilee Hills",
+        "Durgabai Deshmukh Hospital, Vidyanagar",
+        "Fernandez Hospital, Bogulkunta",
+        "L. V. Prasad Eye Institute",
+        "LifeSpring Hospitals",
+        "National Institute of Mentally Handicapped, Newbowenpally",
+        "Nizams Institute of Medical Sciences, Somajiguda",
+        "Osmania General Hospital, Afzal Gunj",
+        "Sarojini Devi Eye Hospital, Mehidipatnam",
+        "Yashoda Hospitals, Malakpet, Secunderabad, Somajiguda"
+    };
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PatientModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PatientId)
+
+        <div class="form-group">
+            @Html.Label("First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Age", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.City, new SelectList(cityList))
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("DOB", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DOB, new { type = "date" })
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Addmission Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AdmissionDate, new { type = "date" })
+                @Html.ValidationMessageFor(model => model.AdmissionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Hospital", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Hospital, new SelectList(hospitalList))
+                @Html.ValidationMessageFor(model => model.Hospital, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Discharge Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DischargeDate, new { type = "date" })
+                @Html.ValidationMessageFor(model => model.DischargeDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Total Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
